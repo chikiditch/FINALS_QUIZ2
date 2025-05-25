@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MIDTERM LECTURE 6 - IMAGE TECHNIQUES</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            max-width: 900%;
+        }
+        h1, h2 {
+            color: #2c3e50;
+        }
+        section {
+            margin-bottom: 30px;
+            padding: 15px;
+            border: 1px solid #eee;
+            border-radius: 5px;
+        }
+        
+     
+        
+       
+        
+        
+   
+
+    
+
+        .img-1 {
+            border: 2px solid #333;
+
+        }
+
+        .img-2 {
+            width: 5in; 
+            height: 5in;
+        }
+        
+        .img-3 {
+            border-radius: 55px;
+        }
+        
+        .img-4 {
+           border: 2px solid #3498db;
+           border-top-left-radius: 30px;
+           border-bottom-right-radius: 30px;
+        }
+        
+        .img-5 {
+            border: 2px solid #2ecc71;
+        }
+
+        .img-6{
+            
+            margin-right: 20px;
+            margin-bottom: 10px;
+        }
+
+        .img-7{
+            border: 2px solid #e74c3c;
+            transition: transform 0.3s ease;
+        }
+        .img-7:hover {
+            transform: scale(1.1);
+            opacity: 0.8;
+        }
+
+        .img-8{
+            box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.3);
+            transition: box-shadow 0.3s ease;
+            
+        }
+
+        .img-9{
+        
+            clip-path: circle(40%);
+            shape-outside: circle(45%);
+            height: 250px;
+            width: 250px;
+        }
+
+        .img-10{
+            
+            shape-outside: square(50% at 50% 50%); 
+            clip-path: square(50% at 50% 50%); 
+        }
+
+        .img-11{
+            
+            mask-size: contain;
+            max-width: 40%;
+            mask-repeat: no-repeat;
+        }
+
+        .img-12{
+
+        }
+
+
+    
+
+    </style>
+</head>
+<body>
+    <h1>MIDTERM LECTURE 6 - IMAGE TECHNIQUES</h1>
+    
+    <section>
+        <h2>1. Image with 2px Border and Alternative Text</h2>
+        <img class="img-1" src="https://img.money.com/2018/07/180702-lebron-james-lakers.jpg" alt="LeBron James">
+    </section>
+    
+    <section>
+        <h2>2. Image with Definite Size (5x5 inches)</h2>
+        <img class="img-2" src="https://img.money.com/2018/07/180702-lebron-james-lakers.jpg" alt="LeBron James">
+    </section>
+    
+    <section>
+        <h2>3. Image with Rounded Borders</h2>
+        <img class="img-3" src="https://a1.espncdn.com/combiner/i?img=%2Fphoto%2F2016%2F0314%2Fr63204_1296x729_16%2D9.jpg&w=1140&cquality=40&format=jpg" alt="Basketball player">
+    </section>
+    
+    <section>
+        <h2>4. Image with Partial Rounded Borders (Top Left and Lower Right)</h2>
+        <img class="img-4" src="https://mir-s3-cdn-cf.behance.net/project_modules/fs/0840a153196937.592c25599a280.png" alt="Abstract design">
+    </section>
+    
+    <section>
+        <h2>5. Image that Links to UE Website</h2>
+        <a href="https://www.ue.edu.ph" target="_blank">
+            <img class="img-5" src="https://the-post-assets.sgp1.digitaloceanspaces.com/2022/03/CAMPUS-1-MARCH-17.png" alt="Link to UE Website">
+        </a>
+    </section>
+    
+    <section>
+        <h2>6. Image with Float Application</h2>
+        <div>
+            <img class="img-6" src="https://i.guim.co.uk/img/media/ec794f166da5d005a071081583a9c115c117fa3c/363_608_4601_2762/master/4601.jpg?width=620&dpr=2&s=none" alt="Floated image">
+            <div style="clear: both;"></div>
+        </div>
+    </section>
+    
+    <section>
+        <h2>7. Image with CSS Hovering Effect</h2>
+        <img class="img-7" src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7a/LeBron_James_%2851959977144%29_%28cropped2%29.jpg/375px-LeBron_James_%2851959977144%29_%28cropped2%29.jpg"  >
+        
+    </section>
+    
+    <section>
+        <h2>8. Image with CSS Box Shadow Effect</h2>
+        <img class="img-8" src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6d/Good_Food_Display_-_NCI_Visuals_Online.jpg/450px-Good_Food_Display_-_NCI_Visuals_Online.jpg">
+        
+    </section>
+
+    <section>
+      <h2>9.Image with a shape-outside application.</h2>
+      <img class="img-9" src="https://athlonsports.com/.image/t_share/MjEzMzU1NjM5NzgxNDY3NTk5/lebron-james.jpg" >  
+    </section>
+
+  
+  
+    <section>
+        <h2>10.Image with a shape-outside application.</h2>
+        <img class="img-10" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQlGoUyR-EPZf0tB1wWFLtalAURcdAbnd8_5A&s" >
+    </section>
+
+  
+  <section>
+    <h2>11.Image with a mask-image application.</h2>
+    <img class="img-11" src="https://i.pinimg.com/736x/23/8f/40/238f4095724c939f39e7a1798655da00.jpg" >
+</section>
+
+
+
+<section>
+    <h2>12.Image with an image map application.</h2>
+    <img src="ALL SHAPES.png" usemap="#image-map">
+
+    <map name="image-map">
+    <area target="_self" alt="circle" title="circle" href="circle.html" coords="360,769,235" shape="circle">
+    <area target="_self" alt="square" title="square" href="square.html" coords="795,1016,1297,537" shape="rect">
+    <area target="_self" alt="triangle" title="triangle" href="triangle.html" coords="1526,1018,1883,1015,1703,512,1599,818" shape="poly">
+</map>
+</section>
+
+
+
+</body>
+</html>

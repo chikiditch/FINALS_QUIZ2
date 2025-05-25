@@ -1,0 +1,1028 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Web Development Portfolio showcasing projects and progress">
+    <title>Cabeza | WebDev Portfolio</title>
+    <style>
+        /* ========== BASE STYLES ========== */
+        @import url('https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700&display=swap');
+        
+        :root {
+            --bg-color: #f5f5f5;
+            --card-bg: #ffffff;
+            --primary-color: #e3350d;
+            --primary-hover: #ff5e5e;
+            --text-primary: #313131;
+            --text-secondary: #767676;
+            --border-color: #e0e0e0;
+            --section-spacing: 3rem;
+            --card-radius: 16px;
+            --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            
+            --gradient: linear-gradient(135deg, #e3350d 0%, #ee6b2f 100%);
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            --shadow-hover: 0 8px 24px rgba(227, 53, 13, 0.2);
+            --card-border: 4px solid #313131;
+            --energy-fire: #ff7c00;
+            --energy-water: #00aeff;
+            --energy-electric: #f8d030;
+            --energy-grass: #4dad5b;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            width: 100%;
+            font-family: 'Rubik', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            background-image: url('https://www.transparenttextures.com/patterns/pokemon.png');
+            background-size: 300px;
+            background-attachment: fixed;
+            
+        }
+
+        /* ========== POKÉMON TCG STYLES ========== */
+        .card-corner {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            background-color: var(--primary-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 14px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .card-corner.top-left {
+            top: -15px;
+            left: -15px;
+        }
+
+        .card-corner.bottom-right {
+            bottom: -15px;
+            right: -15px;
+            transform: rotate(180deg);
+        }
+
+        .energy-type {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 50px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-right: 0.5rem;
+            color: white;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .energy-fire {
+            background-color: var(--energy-fire);
+        }
+
+        .energy-water {
+            background-color: var(--energy-water);
+        }
+
+        .energy-electric {
+            background-color: var(--energy-electric);
+            color: #313131;
+        }
+
+        .energy-grass {
+            background-color: var(--energy-grass);
+        }
+
+        .hp-bar {
+            height: 6px;
+            background-color: #e0e0e0;
+            border-radius: 3px;
+            margin-top: 0.5rem;
+            overflow: hidden;
+        }
+
+        .hp-fill {
+            height: 100%;
+            background: var(--gradient);
+            width: 100%;
+            transition: width 0.5s ease;
+        }
+
+        /* ========== CONTAINER & LAYOUT ========== */
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            
+
+        }
+
+        /* ========== HEADER & NAVIGATION ========== */
+        header {
+            width: 100vw;
+            position: relative;
+            left: 50%;
+            right: 50%;
+            margin-left: -50vw;
+            margin-right: -50vw;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem 0;
+            background-color: white;
+            border-bottom: var(--card-border);
+            box-shadow: var(--shadow);
+        }
+
+        .header-container {
+            width: 100%;
+            max-width: 1200px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        nav {
+            display: flex;
+            gap: 1.5rem;
+            background-color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 50px;
+            box-shadow: var(--shadow);
+            border: 2px solid var(--text-primary);
+        }
+
+        nav a {
+            font-size: 0.95rem;
+            font-weight: 500;
+            letter-spacing: 0.05em;
+            text-decoration: none;
+            color: var(--text-secondary);
+            transition: var(--transition);
+            position: relative;
+            padding: 0.25rem 0;
+        }
+
+        nav a:hover {
+            color: var(--primary-color);
+            transform: translateY(-2px);
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 3px;
+            bottom: 0;
+            left: 0;
+            background: var(--gradient);
+            transition: var(--transition);
+            border-radius: 2px;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        /* Active navigation link */
+        nav a.active {
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+
+        nav a.active::after {
+            width: 100%;
+        }
+
+        /* ========== LOGO ========== */
+        .logo-text {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .logo {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            background: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            transition: var(--transition);
+            box-shadow: var(--shadow);
+            border: 3px solid var(--text-primary);
+            position: relative;
+        }
+
+        .logo img {
+            width: 65px;
+            height: 65px;
+            border-radius: 50%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .logo-text:hover .logo {
+            transform: translateY(-5px) rotate(5deg);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .logo-text:hover .logo img {
+            transform: scale(1.05);
+        }
+
+        .text {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .name {
+            font-size: 1.8rem;
+            font-weight: 700;
+            line-height: 1.2;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            letter-spacing: -0.5px;
+            text-shadow: 2px 2px 0 rgba(0,0,0,0.1);
+        }
+
+        .subj {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            letter-spacing: 0.1em;
+            margin-top: 0.2rem;
+            font-weight: 500;
+        }
+
+        /* ========== HERO SECTION ========== */
+        .hero {
+            min-height: 80vh;
+            display: flex;
+            align-items: center;
+            padding: 4rem 0;
+            position: relative;
+        }
+
+        .hero-content {
+            max-width: 700px;
+            background-color: white;
+            padding: 3rem;
+            border-radius: var(--card-radius);
+            box-shadow: var(--shadow);
+            border: var(--card-border);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-content::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 10px;
+            background: var(--gradient);
+        }
+
+        .tag {
+            display: inline-block;
+            padding: 0.5rem 1.2rem;
+            background: var(--gradient);
+            color: white;
+            font-size: 0.9rem;
+            font-weight: 600;
+            border-radius: 50px;
+            margin-bottom: 1.5rem;
+            box-shadow: var(--shadow);
+            letter-spacing: 0.05em;
+            border: 2px solid var(--text-primary);
+        }
+
+        h1 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 700;
+            line-height: 1.2;
+            margin: 1.5rem 0;
+            color: var(--text-primary);
+            letter-spacing: -1px;
+        }
+
+        .description {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin-bottom: 2rem;
+            line-height: 1.7;
+        }
+
+        /* ========== PROJECT SECTIONS ========== */
+        .section {
+            margin-bottom: var(--section-spacing);
+            scroll-margin-top: 6rem;
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            background-color: white;
+            padding: 1rem 1.5rem;
+            border-radius: var(--card-radius);
+            box-shadow: var(--shadow);
+            border: var(--card-border);
+            width: fit-content;
+        }
+
+        .section-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--gradient);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            border: 3px solid var(--text-primary);
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            font-weight: 600;
+        }
+
+        .project-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .project-card {
+            background: var(--card-bg);
+            border-radius: var(--card-radius);
+            padding: 1.5rem;
+            transition: var(--transition);
+            border: var(--card-border);
+            box-shadow: var(--shadow);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 8px;
+            background: var(--gradient);
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px) rotate(2deg);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .project-card a {
+            text-decoration: none;
+            color: inherit;
+            display: block;
+            height: 100%;
+        }
+
+        .project-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+            transition: var(--transition);
+            line-height: 1.3;
+        }
+
+        .project-card:hover .project-title {
+            color: var(--primary-color);
+        }
+
+        .project-category {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+            display: block;
+            font-weight: 500;
+        }
+
+        .project-status {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            background: rgba(227, 53, 13, 0.1);
+            color: var(--primary-color);
+            border-radius: 50px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-top: 0.5rem;
+            border: 1px solid var(--primary-color);
+        }
+
+        .project-hp {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: 1.5rem;
+        }
+
+        .hp-label {
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+        }
+
+        .hp-value {
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+
+        /* ========== FOOTER ========== */
+        footer {
+            width: 100vw;
+            position: relative;
+            left: 50%;
+            right: 50%;
+            margin-left: -50vw;
+            margin-right: -50vw;
+            text-align: center;
+            padding: 3rem 0;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-top: 4rem;
+            background-color: white;
+            border-top: var(--card-border);
+            box-shadow: 0 -4px 12px rgba(0,0,0,0.05);
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* ========== RESPONSIVE DESIGN ========== */
+        @media (max-width: 992px) {
+            :root {
+                --section-spacing: 2.5rem;
+            }
+            
+            .hero {
+                min-height: auto;
+                padding: 3rem 0;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 1.5rem;
+                padding: 0 1.5rem;
+            }
+            
+            nav {
+                width: 100%;
+                justify-content: space-around;
+                gap: 0.5rem;
+                flex-wrap: wrap;
+                padding: 0.5rem;
+            }
+            
+            .project-list {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-content {
+                padding: 2rem;
+            }
+
+            .logo {
+                width: 60px;
+                height: 60px;
+            }
+            
+            .logo img {
+                width: 55px;
+                height: 55px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .container {
+                padding: 0 1.5rem;
+            }
+            
+            .logo {
+                width: 50px;
+                height: 50px;
+            }
+            
+            .logo img {
+                width: 45px;
+                height: 45px;
+            }
+            
+            .name {
+                font-size: 1.5rem;
+            }
+            
+            nav a {
+                font-size: 0.85rem;
+            }
+            
+            h1 {
+                font-size: 2.2rem;
+            }
+            
+            .description {
+                font-size: 1rem;
+            }
+
+            .section-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 1rem;
+                width: 100%;
+            }
+        }
+
+        /* Animation */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+
+        .hero-content, .section {
+            animation: fadeIn 0.8s ease-out forwards;
+        }
+
+        .section:nth-child(2) { animation-delay: 0.2s; }
+        .section:nth-child(3) { animation-delay: 0.3s; }
+        .section:nth-child(4) { animation-delay: 0.4s; }
+        .section:nth-child(5) { animation-delay: 0.5s; }
+
+        .logo:hover {
+            animation: float 2s ease-in-out infinite;
+        }
+
+        /* Print styles */
+        @media print {
+            body {
+                background-color: white;
+                color: black;
+                font-size: 12pt;
+                background-image: none;
+            }
+            
+            .logo {
+                background: white !important;
+                border: 2px solid #ccc !important;
+            }
+            
+            .name {
+                background: none !important;
+                color: black !important;
+            }
+            
+            .project-card {
+                break-inside: avoid;
+                border: 2px solid #ccc !important;
+                box-shadow: none !important;
+            }
+            
+            footer {
+                border-top: 2px solid #ccc;
+                box-shadow: none;
+            }
+
+            nav {
+                box-shadow: none;
+                border: 2px solid #ccc !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <a href="#" class="logo-text">
+                <div class="logo">
+                    <img src="images/logo.png" alt="Portfolio logo" width="60" height="60">
+                </div>
+                <div class="text">
+                    <span class="name">Cabeza</span>
+                    <span class="subj">Web Development Portfolio</span>
+                </div>
+            </a>
+            
+            <nav aria-label="Main navigation">
+                <a href="#lectures" class="active">Lectures</a>
+                <a href="#prelims">Prelims</a>
+                <a href="#midterms">Midterms</a>
+                <a href="#finals">Finals</a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container">
+        <main>
+            <section class="hero">
+                <div class="hero-content">
+                    <span class="tag">Introducing</span>
+                    <h1>My Web Development Journey</h1>
+                    <p class="description">
+                        Behind these projects is a student who chose persistence over frustration, growth over comfort, and effort over excuses. Each piece represents progress built one challenge at a time.
+                    </p>
+                    <div class="project-hp">
+                        <span class="hp-label">PROGRESS AS WEBDEV</span>
+                        <span class="hp-value">40%</span>
+                    </div>
+                    <div class="hp-bar">
+                        <div class="hp-fill" style="width: 40%"></div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="lectures" class="section" aria-labelledby="lectures-heading">
+                <div class="section-header">
+                    <div class="section-icon">📚</div>
+                    <h2 id="lectures-heading">Lecture Activities</h2>
+                </div>
+                <ul class="project-list">
+                    <li class="project-card">
+                        <a href="">
+                            <span class="project-category">HTML Basics</span>
+                            <h3 class="project-title">Intro to Web Design and Components</h3>
+                            <span class="energy-type energy-fire">HTML</span>
+                            <span class="project-status">Completed</span>
+                            <div class="project-hp">
+                                <span class="hp-label">COMPLETION</span>
+                                <span class="hp-value">100%</span>
+                            </div>
+                            <div class="hp-bar">
+                                <div class="hp-fill" style="width: 100%"></div>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="project-card">
+                        <a href="">
+                            <span class="project-category">HTML Structures</span>
+                            <h3 class="project-title">HTML Document Structure</h3>
+                            <span class="energy-type energy-fire">HTML</span>
+                            <span class="project-status">Completed</span>
+                            <div class="project-hp">
+                                <span class="hp-label">COMPLETION</span>
+                                <span class="hp-value">100%</span>
+                            </div>
+                            <div class="hp-bar">
+                                <div class="hp-fill" style="width: 100%"></div>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="project-card">
+                        <a href="">
+                            <span class="project-category">Tables</span>
+                            <h3 class="project-title">HTML Table Structures</h3>
+                            <span class="energy-type energy-fire">HTML</span>
+                            <span class="project-status">Completed</span>
+                            <div class="project-hp">
+                                <span class="hp-label">COMPLETION</span>
+                                <span class="hp-value">100%</span>
+                            </div>
+                            <div class="hp-bar">
+                                <div class="hp-fill" style="width: 100%"></div>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="project-card">
+                        <a href="">
+                            <span class="project-category">Lists & Media</span>
+                            <h3 class="project-title">Lists, Links, and Images</h3>
+                            <span class="energy-type energy-fire">HTML</span>
+                            <span class="project-status">Completed</span>
+                            <div class="project-hp">
+                                <span class="hp-label">COMPLETION</span>
+                                <span class="hp-value">100%</span>
+                            </div>
+                            <div class="hp-bar">
+                                <div class="hp-fill" style="width: 100%"></div>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="project-card">
+                        <a href="">
+                            <span class="project-category">CSS</span>
+                            <h3 class="project-title">Styling with CSS</h3>
+                            <span class="energy-type energy-fire">HTML</span>
+                            <span class="energy-type energy-water">CSS</span>
+                            <span class="project-status">Completed</span>
+                            <div class="project-hp">
+                                <span class="hp-label">COMPLETION</span>
+                                <span class="hp-value">100%</span>
+                            </div>
+                            <div class="hp-bar">
+                                <div class="hp-fill" style="width: 100%"></div>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="project-card">
+                        <a href="">
+                            <span class="project-category">Forms</span>
+                            <h3 class="project-title">Interactive Forms</h3>
+                            <span class="energy-type energy-fire">HTML</span>
+                            <span class="project-status">Completed</span>
+                            <div class="project-hp">
+                                <span class="hp-label">COMPLETION</span>
+                                <span class="hp-value">100%</span>
+                            </div>
+                            <div class="hp-bar">
+                                <div class="hp-fill" style="width: 100%"></div>
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+            </section>
+
+            <section id="prelims" class="section" aria-labelledby="prelims-heading">
+                <div class="section-header">
+                    <div class="section-icon">📝</div>
+                    <h2 id="prelims-heading">Prelim Projects</h2>
+                </div>
+                <ul class="project-list">
+                    <li class="project-card">
+                        <a href="">
+                            <span class="project-category">Activity 2</span>
+                            <h3 class="project-title">Table-Image Gallery</h3>
+                            <span class="energy-type energy-fire">HTML</span>
+                            <span class="energy-type energy-water">CSS</span>
+                            <span class="energy-type energy-electric">JS</span>
+                            <span class="project-status">Completed</span>
+                            <div class="project-hp">
+                                <span class="hp-label">COMPLETION</span>
+                                <span class="hp-value">100%</span>
+                            </div>
+                            <div class="hp-bar">
+                                <div class="hp-fill" style="width: 100%"></div>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="project-card">
+                        <a href="">
+                            <span class="project-category">Activity 3</span>
+                            <h3 class="project-title">Tags - Web Developer's Page</h3>
+                            <span class="energy-type energy-fire">HTML</span>
+                            <span class="energy-type energy-water">CSS</span>
+                            <span class="project-status">Completed</span>
+                            <div class="project-hp">
+                                <span class="hp-label">COMPLETION</span>
+                                <span class="hp-value">100%</span>
+                            </div>
+                            <div class="hp-bar">
+                                <div class="hp-fill" style="width: 100%"></div>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="project-card">
+                        <a href="">
+                            <span class="project-category">Quiz 1</span>
+                            <h3 class="project-title">Table with Images</h3>
+                            <span class="energy-type energy-fire">HTML</span>
+                            <span class="energy-type energy-water">CSS</span>
+                            <span class="project-status">Completed</span>
+                            <div class="project-hp">
+                                <span class="hp-label">COMPLETION</span>
+                                <span class="hp-value">100%</span>
+                            </div>
+                            <div class="hp-bar">
+                                <div class="hp-fill" style="width: 100%"></div>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="project-card">
+                        <a href="">
+                            <span class="project-category">Exam</span>
+                            <h3 class="project-title">Furniture Sale Project</h3>
+                            <span class="energy-type energy-fire">HTML</span>
+                            <span class="energy-type energy-water">CSS</span>
+                            <span class="energy-type energy-electric">JS</span>
+                            <span class="project-status">Completed</span>
+                            <div class="project-hp">
+                                <span class="hp-label">COMPLETION</span>
+                                <span class="hp-value">100%</span>
+                            </div>
+                            <div class="hp-bar">
+                                <div class="hp-fill" style="width: 100%"></div>
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+            </section>
+
+            <section id="midterms" class="section" aria-labelledby="midterms-heading">
+                <div class="section-header">
+                    <div class="section-icon">📖</div>
+                    <h2 id="midterms-heading">Midterm Projects</h2>
+                </div>
+                <ul class="project-list">
+                    <li class="project-card">
+                        <a href="">
+                            <span class="project-category">Activity 2</span>
+                            <h3 class="project-title">Lists-Table of Contents</h3>
+                            <span class="energy-type energy-fire">HTML</span>
+                            <span class="energy-type energy-water">CSS</span>
+                            <span class="project-status">Completed</span>
+                            <div class="project-hp">
+                                <span class="hp-label">COMPLETION</span>
+                                <span class="hp-value">100%</span>
+                            </div>
+                            <div class="hp-bar">
+                                <div class="hp-fill" style="width: 100%"></div>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="project-card">
+                        <a href="">
+                            <span class="project-category">Activity 3</span>
+                            <h3 class="project-title">Image and Image Mapping</h3>
+                            <span class="energy-type energy-fire">HTML</span>
+                            <span class="energy-type energy-water">CSS</span>
+                            <span class="project-status">Completed</span>
+                            <div class="project-hp">
+                                <span class="hp-label">COMPLETION</span>
+                                <span class="hp-value">100%</span>
+                            </div>
+                            <div class="hp-bar">
+                                <div class="hp-fill" style="width: 100%"></div>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="project-card">
+                        <a href="">
+                            <span class="project-category">Activity 4</span>
+                            <h3 class="project-title">Admission Form</h3>
+                            <span class="energy-type energy-fire">HTML</span>
+                            <span class="energy-type energy-water">CSS</span>
+                            <span class="energy-type energy-electric">JS</span>
+                            <span class="project-status">Completed</span>
+                            <div class="project-hp">
+                                <span class="hp-label">COMPLETION</span>
+                                <span class="hp-value">100%</span>
+                            </div>
+                            <div class="hp-bar">
+                                <div class="hp-fill" style="width: 100%"></div>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="project-card">
+                        <a href="">
+                            <span class="project-category">Exam</span>
+                            <h3 class="project-title">Informative Page</h3>
+                            <span class="energy-type energy-fire">HTML</span>
+                            <span class="energy-type energy-water">CSS</span>
+                            <span class="energy-type energy-electric">JS</span>
+                            <span class="project-status">Completed</span>
+                            <div class="project-hp">
+                                <span class="hp-label">COMPLETION</span>
+                                <span class="hp-value">100%</span>
+                            </div>
+                            <div class="hp-bar">
+                                <div class="hp-fill" style="width: 100%"></div>
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+            </section>
+
+            <section id="finals" class="section" aria-labelledby="finals-heading">
+                <div class="section-header">
+                    <div class="section-icon">🎓</div>
+                    <h2 id="finals-heading">Final Requirements</h2>
+                </div>
+                <ul class="project-list">
+                    <li class="project-card">
+                        <a href="">
+                            <span class="project-category">Final Activity</span>
+                            <h3 class="project-title">Admin Page</h3>
+                            <span class="energy-type energy-fire">HTML</span>
+                            <span class="energy-type energy-water">CSS</span>
+                            <span class="energy-type energy-electric">JS</span>
+                            <span class="project-status">Completed</span>
+                            <div class="project-hp">
+                                <span class="hp-label">COMPLETION</span>
+                                <span class="hp-value">100%</span>
+                            </div>
+                            <div class="hp-bar">
+                                <div class="hp-fill" style="width: 100%"></div>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="project-card">
+                        <a href="">
+                            <span class="project-category">Capstone</span>
+                            <h3 class="project-title">Final Project</h3>
+                            <span class="energy-type energy-fire">HTML</span>
+                            <span class="energy-type energy-water">CSS</span>
+                            <span class="energy-type energy-electric">JS</span>
+                         
+                            <span class="project-status">Adjusting</span>
+                            <div class="project-hp">
+                                <span class="hp-label">COMPLETION</span>
+                                <span class="hp-value">80%</span>
+                            </div>
+                            <div class="hp-bar">
+                                <div class="hp-fill" style="width: 80%"></div>
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+            </section>
+        </main>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <p>&copy; <span id="year">2025</span> Cabeza WebDev Portfolio. All progress documented.</p>
+            <p style="margin-top: 0.5rem;">Gotta code 'em all!</p>
+        </div>
+    </footer>
+
+    <script>
+        // Update copyright year automatically
+        document.getElementById('year').textContent = new Date().getFullYear();
+        
+        // Highlight active nav link on scroll
+        const sections = document.querySelectorAll('.section');
+        const navLinks = document.querySelectorAll('nav a');
+        
+        window.addEventListener('scroll', () => {
+            let current = '';
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                
+                if (pageYOffset >= (sectionTop - 200)) {
+                    current = section.getAttribute('id');
+                }
+            });
+            
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href').includes(current)) {
+                    link.classList.add('active');
+                }
+            });
+        });
+
+        // Add floating animation to project cards on hover
+        const projectCards = document.querySelectorAll('.project-card');
+        projectCards.forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                card.style.transform = 'translateY(-10px) rotate(2deg)';
+                card.style.boxShadow = '0 15px 30px rgba(227, 53, 13, 0.3)';
+            });
+            
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = '';
+                card.style.boxShadow = '';
+            });
+        });
+    </script>
+</body>
+</html>
