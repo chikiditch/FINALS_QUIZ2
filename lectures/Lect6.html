@@ -1,0 +1,334 @@
+<html lang="en"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lecture 6: Forms</title>
+    <style>
+
+
+
+
+
+        :root {
+            --bg-color: #f5f5f5;
+            --card-bg: #ffffff;
+            --primary-color: #e3350d;
+            --primary-hover: #ff5e5e;
+            --text-primary: #313131;
+            --text-secondary: #767676;
+            --border-color: #e0e0e0;
+            --section-spacing: 3rem;
+            --card-radius: 16px;
+            --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            
+            --gradient: linear-gradient(135deg, #e3350d 0%, #ee6b2f 100%);
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            --shadow-hover: 0 8px 24px rgba(227, 53, 13, 0.2);
+            --card-border: 4px solid #313131;
+            --energy-fire: #ff7c00;
+            --energy-water: #00aeff;
+            --energy-electric: #f8d030;
+            --energy-grass: #4dad5b;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            width: 100%;
+            font-family: 'Rubik', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            background-image: url('https://www.transparenttextures.com/patterns/pokemon.png');
+            background-size: 300px;
+            background-attachment: fixed;
+            
+        }
+              header {
+            width: 100vw;
+            position: relative;
+            left: 50%;
+            right: 50%;
+            margin-left: -50vw;
+            margin-right: -50vw;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem 0;
+            background-color: white;
+            border-bottom: var(--card-border);
+            box-shadow: var(--shadow);
+        }
+
+        .header-container {
+            width: 100%;
+            max-width: 1200px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        nav {
+            display: flex;
+            gap: 1.5rem;
+            background-color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 50px;
+            box-shadow: var(--shadow);
+            border: 2px solid var(--text-primary);
+        }
+
+        nav a {
+            font-size: 0.95rem;
+            font-weight: 500;
+            letter-spacing: 0.05em;
+            text-decoration: none;
+            color: var(--text-secondary);
+            transition: var(--transition);
+            position: relative;
+            padding: 0.25rem 0;
+        }
+
+        nav a:hover {
+            color: var(--primary-color);
+            transform: translateY(-2px);
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 3px;
+            bottom: 0;
+            left: 0;
+            background: var(--gradient);
+            transition: var(--transition);
+            border-radius: 2px;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        /* Active navigation link */
+        nav a.active {
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+
+        nav a.active::after {
+            width: 100%;
+        }
+
+        /* ====================================== LOGO ================================== */
+        .logo-text {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .logo {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            background: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            transition: var(--transition);
+            box-shadow: var(--shadow);
+            border: 3px solid var(--text-primary);
+            position: relative;
+        }
+
+        .logo img {
+            width: 65px;
+            height: 65px;
+            border-radius: 50%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .logo-text:hover .logo {
+            transform: translateY(-5px) rotate(5deg);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .logo-text:hover .logo img {
+            transform: scale(1.05);
+        }
+
+        .text {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .name {
+            font-size: 1.8rem;
+            font-weight: 700;
+            line-height: 1.2;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            letter-spacing: -0.5px;
+            text-shadow: 2px 2px 0 rgba(0,0,0,0.1);
+        }
+
+        .subj {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            letter-spacing: 0.1em;
+            margin-top: 0.2rem;
+            font-weight: 500;
+        }
+
+
+
+    </style>
+</head>
+<body data-new-gr-c-s-check-loaded="14.1105.0" data-gr-ext-installed="">
+    <header>
+        <div class="header-container">
+            <a href="#" class="logo-text">
+                <div class="logo">
+                    <img src="../PORTFOLIO/images/logo.png" alt="Portfolio logo" width="60" height="60">
+                </div>
+                <div class="text">
+                    <span class="name">Cabeza</span>
+                    <span class="subj">Web Development Portfolio</span>
+                </div>
+            </a>
+            
+            <nav aria-label="Main navigation">
+                <a href="../PORTFOLIO/background.html#lectures" class="active">Lectures</a>
+                <a href="../PORTFOLIO/background.html#prelims">Prelims</a>
+                <a href="../PORTFOLIO/background.html#midterms">Midterms</a>
+                <a href="../PORTFOLIO/background.html#finals">Finals</a>
+            </nav>
+        </div>
+    </header>    
+    <main>
+            <h1>Lecture 6: Web Forms</h1>
+            <h2>HTML INPUT TYPES</h2>
+
+            <form action="/submit" method="post" autocomplete="on" enctype="multipart/form-data" novalidate="">
+                <h3>input type text</h3>
+                <label for="fname">First name:</label><br>
+                <input type="text" id="fname" name="fname" placeholder="Enter your first name" required="" maxlength="30" autofocus=""><br>
+                <label for="lname">Last name:</label><br>
+                <input type="text" id="lname" name="lname" placeholder="Enter your last name" required="" maxlength="30"><br>
+                <h3>input type password</h3>
+                <label for="pwd">Password:</label><br>
+                <input type="password" id="pwd" name="pwd" minlength="6" maxlength="20" required="" placeholder="Enter password"><br>
+                <h3>input type email</h3>
+                <label for="email">Email:</label><br>
+                <input type="email" id="email" name="email" required="" placeholder="example@email.com"><br>
+                <h3>input type number</h3>
+                <label for="age">Age:</label><br>
+                <input type="number" id="age" name="age" min="0" max="120" step="1" required=""><br>
+                <h3>input type date</h3>
+                <label for="bday">Birthday:</label><br>
+                <input type="date" id="bday" name="bday" required=""><br>
+                <h3>input type time</h3>
+                <label for="appt">Select a time:</label><br>
+                <input type="time" id="appt" name="appt" required=""><br>
+                <h3>input type color</h3>
+                <label for="favcolor">Favorite color:</label><br>
+                <input type="color" id="favcolor" name="favcolor" value="#0000ff"><br>
+                <h3>input type range</h3>
+                <label for="vol">Volume (0-100):</label><br>
+                <input type="range" id="vol" name="vol" min="0" max="100" value="50" step="5"><br>
+                <h3>input type url</h3>
+                <label for="homepage">Homepage:</label><br>
+                <input type="url" id="homepage" name="homepage" placeholder="https://example.com" pattern="https://.*"><br>
+                <h3>input type tel</h3>
+                <label for="phone">Phone number:</label><br>
+                <input type="tel" id="phone" name="phone" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" placeholder="123-456-7890"><br>
+                <h3>input type radio</h3>
+                <input type="radio" id="male" name="gender" value="male" checked="">
+                <label for="male">Male</label><br>
+                <input type="radio" id="female" name="gender" value="female">
+                <label for="female">Female</label><br>
+                <input type="radio" id="other" name="gender" value="other">
+                <label for="other">Other</label><br>
+                <h3>Input type submit</h3>
+                <input type="submit" value="Submit">
+                <h3>Input type checkbox</h3>
+                <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike">
+                <label for="vehicle1"> I have a bike</label><br>
+                <input type="checkbox" id="vehicle2" name="vehicle2" value="Car">
+                <label for="vehicle2"> I have a car</label><br>
+                <input type="checkbox" id="vehicle3" name="vehicle3" value="Boat">
+                <label for="vehicle3"> I have a boat</label><br>
+                <h3>Input type file</h3>
+                <label for="myfile">Select a file (multiple, only images or pdf, max 2 files):</label><br>
+                <input type="file" id="myfile" name="myfile" accept="image/*,application/pdf" multiple=""><br>
+                <h3>Input type hidden</h3>
+                <input type="hidden" id="userid" name="userid" value="12345">
+                <h3>Input type image</h3>
+                <label>Example image button:</label><br>
+                <input type="image" src="../image/4.png" alt="Submit" width="48" height="48"><br>
+                <h3>Input type list (datalist)</h3>
+                <label for="browsers">Choose your browser from the list:</label><br>
+                <input list="browsers" name="browser" id="browsers" placeholder="e.g. Chrome" required="">
+                <datalist id="browsers">
+                  <option value="Chrome">
+                  </option><option value="Firefox">
+                  </option><option value="Safari">
+                  </option><option value="Edge">
+                  </option><option value="Opera">
+                </option></datalist><br>
+                <h3>Input type with min, max, step, pattern, placeholder, required, multiple</h3>
+                <label for="lucky">Enter a lucky number (1-100, step 2):</label><br>
+                <input type="number" id="lucky" name="lucky" min="1" max="100" step="2" placeholder="Odd numbers only" required=""><br>
+                <label for="username">Username (letters and numbers only, 5-12 chars):</label><br>
+                <input type="text" id="username" name="username" pattern="[A-Za-z0-9]{5,12}" placeholder="e.g. user123" required=""><br>
+                <label for="favfruits">Favorite fruits (choose multiple):</label><br>
+                <select id="favfruits" name="favfruits" multiple="" required="">
+                  <option value="apple">Apple</option>
+                  <option value="banana">Banana</option>
+                  <option value="orange">Orange</option>
+                  <option value="grape">Grape</option>
+                  <option value="mango">Mango</option>
+                </select><br>
+                <h3>Input type reset</h3>
+                <input type="reset" value="Reset">
+            </form>
+            <hr>
+            <h2>HTML Multimedia Elements</h2>
+            <h3>Image Example</h3>
+            <label>Sample image:</label><br>
+            <img src="../PORTFOLIO/images/car.jpg" alt="CAR" width="200"><br>
+            <h3>Audio Example</h3>
+            <label>Sample audio (controls, autoplay, loop):</label><br>
+            <audio controls="" autoplay="" loop="">
+                <source src="../PORTFOLIO/images/brAin.mp3" type="audio/mpeg">
+                Your browser does not support the audio element.
+            </audio><br>
+            <h3>Video Example</h3>
+            <label>Sample video (controls, width, poster):</label><br>
+            <video width="320" height="240" controls="" poster="../PORTFOLIO/images/car.jpg">
+                <source src="../PORTFOLIO/images/michael reeves - funky galileo.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video><br>
+            <h3>Embed Example (YouTube)</h3>
+            <label>Embedded YouTube video:</label><br>
+<iframe width="1340" height="754" src="https://www.youtube.com/embed/aqz-KE-bpKQ" title="Big Buck Bunny 60fps 4K - Official Blender Foundation Short Film" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe><br>
+            <h3>Object Example (PDF)</h3>
+            <label>Embedded PDF document:</label><br>
+            <object data="../lectures/Lect1.pdf" type="application/pdf" width="400" height="300">
+                <a href="../lectures/Lect1.pdf">View PDF</a>
+            </object><br>
+    </main>
+
+</body></html>
